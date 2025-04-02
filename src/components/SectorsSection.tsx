@@ -5,41 +5,44 @@ import { ArrowRight, ShoppingBag, Code, Banknote, Truck, GraduationCap, Building
 const SectorsSection = () => {
   const sectors = [
     {
-      icon: <ShoppingBag className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <ShoppingBag strokeWidth={1.5} className="text-jockepay-neon transition-colors duration-300" />,
       title: "E-Commerce",
       description: "Melhore as taxas de conversão e reduza custos transacionais com roteamento inteligente entre PSPs."
     },
     {
-      icon: <Code className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <Code strokeWidth={1.5} className="text-jockepay-neon transition-colors duration-300" />,
       title: "SaaS",
       description: "Otimize cobranças recorrentes e reduza taxas de churn oferecendo alternativas de pagamento."
     },
     {
-      icon: <Banknote className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <Banknote strokeWidth={1.5} className="text-jockepay-neon transition-colors duration-300" />,
       title: "Fintech",
       description: "Ganhe flexibilidade com múltiplas integrações e melhore o desempenho de pagamentos."
     },
     {
-      icon: <Truck className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <Truck strokeWidth={1.5} className="text-jockepay-neon transition-colors duration-300" />,
       title: "Logística",
       description: "Gerencie pagamentos de fretes e entregas com maior eficiência e menores custos."
     },
     {
-      icon: <GraduationCap className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <GraduationCap strokeWidth={1.5} className="text-jockepay-neon transition-colors duration-300" />,
       title: "Educação",
       description: "Simplifique o recebimento de mensalidades e reduza inadimplência com rotas alternativas."
     },
     {
-      icon: <Building className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <Building strokeWidth={1.5} className="text-jockepay-neon transition-colors duration-300" />,
       title: "Marketplace",
       description: "Gerencie pagamentos entre múltiplos vendedores com flexibilidade e controle total."
     }
   ];
 
   return (
-    <section id="sectors" className="section-padding relative overflow-hidden">
+    <section id="sectors" className="py-32 md:py-40 relative overflow-hidden">
       {/* Background with accent color */}
       <div className="absolute inset-0 bg-jockepay-blue/5 dark:bg-jockepay-dark/70 z-0"></div>
+      
+      {/* Subtle mesh pattern */}
+      <div className="absolute inset-0 bg-mesh-pattern opacity-10 z-0"></div>
       
       {/* Wavy patterns */}
       <div className="absolute top-0 left-0 right-0 h-32 overflow-hidden z-0">
@@ -54,44 +57,41 @@ const SectorsSection = () => {
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-jockepay-blue/5 rounded-full filter blur-3xl"></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <div className="inline-block mb-4">
-            <span className="bg-jockepay-blue/10 dark:bg-jockepay-blue/20 px-4 py-1 rounded-full text-sm font-medium text-jockepay-blue dark:text-jockepay-blue">Segmentos</span>
+            <span className="backdrop-blur-sm bg-jockepay-blue/10 dark:bg-jockepay-blue/10 border border-jockepay-blue/20 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-blue dark:text-jockepay-neon">Segmentos</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Soluções para cada <span className="text-jockepay-blue">segmento</span></h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Independentemente do seu setor, a Jockepay oferece ferramentas adaptadas às suas necessidades específicas.
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 tracking-tight">Soluções para cada <span className="text-jockepay-blue">segmento</span></h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Cada setor possui necessidades específicas para suas operações de pagamentos. Conheça nossas soluções.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
           {sectors.map((sector, index) => (
             <div 
               key={index} 
-              className="group relative rounded-2xl p-1 bg-gradient-to-br from-jockepay-blue/20 to-jockepay-neon/5"
+              className="group h-full"
             >
-              <div className="bg-white dark:bg-jockepay-dark/50 rounded-xl p-8 h-full relative overflow-hidden">
-                {/* Background pattern */}
-                <div className="absolute inset-0 opacity-5 sector-pattern"></div>
-                
+              {/* Semi-transparent card with glass effect */}
+              <div className="h-full backdrop-blur-sm bg-white/5 dark:bg-white/5 rounded-2xl p-8 relative overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-jockepay-neon/20">
                 {/* Icon */}
-                <div className="relative z-10 mb-6">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <div className="w-10 h-10 flex items-center justify-center">
+                <div className="relative z-10 mb-5">
+                  <div className="w-12 h-12 rounded-xl backdrop-blur-sm bg-gradient-to-br from-white/5 to-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-6 h-6 flex items-center justify-center">
                       {sector.icon}
                     </div>
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold mb-3 relative z-10 group-hover:text-jockepay-blue dark:group-hover:text-jockepay-neon transition-colors">{sector.title}</h3>
-                <p className="text-muted-foreground mb-6 relative z-10">{sector.description}</p>
+                <h3 className="text-xl font-medium mb-3 relative z-10 group-hover:text-jockepay-neon transition-colors">{sector.title}</h3>
+                <p className="text-muted-foreground text-sm mb-6 relative z-10">{sector.description}</p>
                 
-                <a href="#contact" className="inline-flex items-center text-jockepay-blue dark:text-jockepay-neon font-medium gap-1 group-hover:gap-2 transition-all relative z-10">
-                  Ver solução <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </a>
-                
-                {/* Accent corner */}
-                <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-br from-jockepay-blue to-jockepay-neon opacity-20 rounded-tl-2xl transform rotate-90 group-hover:opacity-30 transition-opacity"></div>
+                <div className="pt-2 border-t border-white/5">
+                  <a href="#contact" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
+                    Ver solução <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}

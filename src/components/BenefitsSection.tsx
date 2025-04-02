@@ -1,41 +1,41 @@
 
 import React from 'react';
-import { ArrowRight, Shuffle, BarChart3, LayoutDashboard, RefreshCw, Network } from 'lucide-react';
+import { ArrowRight, Network, Shuffle, BarChart3, LayoutDashboard, RefreshCw } from 'lucide-react';
 
 const BenefitsSection = () => {
   const benefits = [
     {
-      icon: <Network className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
-      title: "Orquestração inteligente entre PSPs",
-      description: "Distribua transações entre múltiplos provedores de pagamento de forma estratégica e otimizada."
+      icon: <Network strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      title: "Orquestração inteligente",
+      description: "Distribua transações entre múltiplos provedores de forma estratégica e otimizada."
     },
     {
-      icon: <Shuffle className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <Shuffle strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Roteamento automático",
       description: "Direcione cada transação para o PSP com maior probabilidade de aprovação em tempo real."
     },
     {
-      icon: <BarChart3 className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
-      title: "Analytics e insights em tempo real",
+      icon: <BarChart3 strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      title: "Analytics em tempo real",
       description: "Visualize métricas de desempenho e taxas de aprovação para tomar decisões baseadas em dados."
     },
     {
-      icon: <LayoutDashboard className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
+      icon: <LayoutDashboard strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Dashboard centralizado",
       description: "Gerencie todas as suas transações em uma única interface intuitiva e poderosa."
     },
     {
-      icon: <RefreshCw className="text-jockepay-blue group-hover:text-jockepay-neon transition-colors duration-300" />,
-      title: "Lógica de fallback e reprocessamento",
-      description: "Recupere transações recusadas automaticamente através de rotas alternativas pré-definidas."
+      icon: <RefreshCw strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      title: "Lógica de fallback",
+      description: "Recupere transações recusadas automaticamente através de rotas alternativas."
     }
   ];
 
   return (
-    <section id="benefits" className="section-padding relative">
+    <section id="benefits" className="py-32 md:py-40 relative">
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-jockepay-dark to-background z-0"></div>
-      <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
+      <div className="absolute inset-0 bg-mesh-pattern opacity-10 z-0"></div>
       
       {/* Curved top edge */}
       <div className="absolute top-0 left-0 right-0 h-24 bg-jockepay-dark z-0">
@@ -45,40 +45,46 @@ const BenefitsSection = () => {
       </div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-24">
           <div className="inline-block mb-4">
-            <span className="bg-gradient-to-r from-jockepay-blue/20 to-jockepay-neon/20 px-4 py-1 rounded-full text-sm font-medium text-jockepay-blue dark:text-jockepay-neon">Recursos poderosos</span>
+            <span className="backdrop-blur-sm bg-white/5 dark:bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            A infraestrutura de pagamentos para 
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon ml-2">empresas que querem crescer</span>
+          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight">
+            Infraestrutura de pagamentos para
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon ml-2 font-bold">empresas que querem crescer</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Otimize sua operação de pagamentos com nossa plataforma de orquestração, 
-            mantendo total autonomia e controle.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Otimize sua operação mantendo total autonomia e controle sobre sua infraestrutura de pagamentos.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className="group relative bg-white/5 dark:bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 dark:border-white/10 overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-jockepay-blue/10 hover:-translate-y-1"
+              className="group relative backdrop-blur-sm bg-white/5 dark:bg-black/5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Glowing background effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-jockepay-blue/0 to-jockepay-neon/0 rounded-xl blur opacity-0 group-hover:opacity-30 group-hover:duration-500 duration-300 transition"></div>
+              {/* Subtle border */}
+              <div className="absolute inset-0 border border-white/10 dark:border-white/5 rounded-2xl"></div>
               
-              {/* Icon with glass effect */}
-              <div className="relative">
-                <div className="p-3 mb-6 bg-white/10 dark:bg-white/5 backdrop-blur-sm w-14 h-14 flex items-center justify-center rounded-xl border border-white/20">
-                  {benefit.icon}
+              {/* Hover effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/5 to-jockepay-neon/5 transition-opacity duration-500"></div>
+              
+              {/* Content */}
+              <div className="relative p-8">
+                <div className="mb-6">
+                  <div className="p-3 bg-white/5 dark:bg-white/5 backdrop-blur-sm w-12 h-12 flex items-center justify-center rounded-xl border border-white/10">
+                    {benefit.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-jockepay-neon transition-colors">{benefit.title}</h3>
-                <p className="text-muted-foreground mb-6">{benefit.description}</p>
-                <a href="#" className="inline-flex items-center text-jockepay-blue dark:text-jockepay-neon font-medium gap-1 group-hover:gap-2 transition-all">
-                  Saiba mais <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                </a>
+                <h3 className="text-xl font-medium mb-3 group-hover:text-jockepay-neon transition-colors">{benefit.title}</h3>
+                <p className="text-muted-foreground text-sm mb-6">{benefit.description}</p>
+                <div className="pt-2 border-t border-white/5">
+                  <a href="#" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
+                    Saiba mais <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}
