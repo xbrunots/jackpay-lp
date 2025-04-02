@@ -7,7 +7,6 @@ import IntegrationsSection from '../components/IntegrationsSection';
 import BenefitsSection from '../components/BenefitsSection';
 import SectorsSection from '../components/SectorsSection';
 import SimulatorSection from '../components/SimulatorSection';
-import BlogSection from '../components/BlogSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 
@@ -32,9 +31,6 @@ const Index = () => {
       
       {/* Simulação: Permite ao usuário ver resultados personalizados */}
       <SimulatorSection />
-      
-      {/* Educação: Blog Section provê conteúdo educacional */}
-      <BlogSection />
       
       {/* CTA final: Contact Section incentiva a ação */}
       <ContactSection />

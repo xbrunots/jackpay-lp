@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CheckCircle, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 
 const IntegrationsSection = () => {
@@ -19,18 +19,6 @@ const IntegrationsSection = () => {
     { name: "Adyen", id: "adyen", color: "#0ABF53" },
   ];
 
-  // Calculate positions for a radial arrangement
-  const getRadialPosition = (index: number, total: number) => {
-    // Convert from index to radians
-    const angleRad = ((index / total) * 2 * Math.PI);
-    
-    // Calculate positions on a circle
-    const x = Math.cos(angleRad) * 230;
-    const y = Math.sin(angleRad) * 230;
-    
-    return { x, y };
-  };
-
   return (
     <section 
       id="integrations" 
@@ -39,11 +27,7 @@ const IntegrationsSection = () => {
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black to-jockepay-dark/90 z-0"></div>
-      
-      {/* Mesh pattern background */}
       <div className="absolute inset-0 bg-mesh-pattern opacity-10 z-0"></div>
-      
-      {/* Floating blur elements */}
       <div className="absolute top-1/4 -right-20 w-64 h-64 bg-jockepay-blue/20 rounded-full filter blur-3xl"></div>
       <div className="absolute bottom-1/3 -left-20 w-80 h-80 bg-jockepay-neon/20 rounded-full filter blur-3xl"></div>
       
@@ -72,35 +56,43 @@ const IntegrationsSection = () => {
           
           <div className="w-full md:w-2/3">
             <div className="relative aspect-square max-w-[500px] mx-auto">
-              {/* Connection lines radiating out in a complete circle - BEHIND PSPs */}
-              {integrations.map((_, i) => {
-                const position = getRadialPosition(i, integrations.length);
-                const angle = (i / integrations.length) * 360;
-                
-                return (
-                  <div 
-                    key={i} 
-                    className={`absolute top-1/2 left-1/2 h-0.5 bg-gradient-to-r from-jockepay-blue/80 to-transparent z-10 transition-all duration-1000 ${sectionIsVisible ? 'opacity-100' : 'opacity-0'}`}
-                    style={{
-                      width: '180px',
-                      transformOrigin: '0 0',
-                      transform: `rotate(${angle}deg)`,
-                      transitionDelay: `${i * 0.1}s`
-                    }}
-                  ></div>
-                );
-              })}
+              {/* Connection lines from center to PSPs */}
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                {integrations.map((_, i) => {
+                  const angle = (i / integrations.length) * 2 * Math.PI;
+                  const x = Math.cos(angle) * 100;
+                  const y = Math.sin(angle) * 100;
+                  
+                  return (
+                    <div 
+                      key={`line-${i}`} 
+                      className={`absolute h-0.5 bg-gradient-to-r from-jockepay-blue/80 to-transparent z-10 transition-all duration-1000 ${sectionIsVisible ? 'opacity-100' : 'opacity-0'}`}
+                      style={{
+                        width: '180px',
+                        transformOrigin: '0% 50%',
+                        transform: `rotate(${angle}rad) translateX(20px)`,
+                        transitionDelay: `${i * 0.1}s`,
+                        left: '50%',
+                        top: '50%'
+                      }}
+                    ></div>
+                  );
+                })}
+              </div>
               
               {/* PSP nodes in a radial arrangement */}
               {integrations.map((integration, index) => {
-                const position = getRadialPosition(index, integrations.length);
+                const angle = (index / integrations.length) * 2 * Math.PI;
+                const x = Math.cos(angle) * 180;
+                const y = Math.sin(angle) * 180;
+                
                 return (
                   <div 
                     key={integration.id}
                     className={`group absolute flex flex-col items-center justify-center h-24 w-24 backdrop-blur-lg bg-white/15 dark:bg-black/40 rounded-xl border border-white/30 transition-all duration-500 hover:-translate-y-2 hover:bg-white/20 hover:border-white/50 hover:shadow-lg hover:scale-110 ${sectionIsVisible ? 'opacity-100' : 'opacity-0'}`}
                     style={{ 
-                      left: `calc(50% + ${position.x}px)`,
-                      top: `calc(50% + ${position.y}px)`,
+                      left: `calc(50% + ${x}px)`,
+                      top: `calc(50% + ${y}px)`,
                       transform: 'translate(-50%, -50%)',
                       transitionDelay: `${index * 0.05}s`,
                       boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
@@ -124,9 +116,9 @@ const IntegrationsSection = () => {
                 );
               })}
 
-              {/* Central node with enhanced glow - ON TOP of lines */}
+              {/* Central Jockepay node */}
               <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
-                <div className="w-32 h-32 backdrop-blur-xl bg-gradient-to-br from-jockepay-blue/50 to-jockepay-neon/50 rounded-full border-2 border-white/40 flex items-center justify-center animate-glow shadow-[0_0_30px_rgba(0,242,234,0.6)] hover:shadow-[0_0_40px_rgba(0,242,234,0.8)] transition-all duration-300 group">
+                <div className="w-32 h-32 backdrop-blur-xl bg-gradient-to-br from-jockepay-blue/50 to-jockepay-neon/50 rounded-full border-2 border-white/40 flex items-center justify-center shadow-[0_0_30px_rgba(0,242,234,0.6)] hover:shadow-[0_0_40px_rgba(0,242,234,0.8)] transition-all duration-300 group">
                   <div className="w-24 h-24 backdrop-blur-xl bg-black/80 rounded-full flex items-center justify-center border border-white/30 group-hover:scale-105 transition-transform">
                     <div className="text-jockepay-neon font-bold text-sm bg-gradient-to-r from-jockepay-blue to-jockepay-neon bg-clip-text text-transparent px-3 py-2 rounded-lg">Jockepay</div>
                   </div>
