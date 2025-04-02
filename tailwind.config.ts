@@ -68,6 +68,25 @@ const config: Config = {
         "jockepay-purple": "#8b5cf6",
         "jockepay-orange": "#f97316",
         "jockepay-teal": "#14b8a6",
+        // Nova paleta secundária para criar mais nuances
+        "jockepay-blue-light": "#60a5fa",
+        "jockepay-blue-dark": "#2563eb",
+        "jockepay-neon-light": "#5cfff8",
+        "jockepay-neon-dark": "#00c9c3",
+        "jockepay-green-light": "#34d399",
+        "jockepay-green-dark": "#059669",
+        "jockepay-gray": {
+          50: "#f8fafc",
+          100: "#f1f5f9",
+          200: "#e2e8f0",
+          300: "#cbd5e1",
+          400: "#94a3b8",
+          500: "#64748b",
+          600: "#475569",
+          700: "#334155",
+          800: "#1e293b",
+          900: "#0f172a",
+        },
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
@@ -92,17 +111,31 @@ const config: Config = {
         'xl': '1rem',
         '2xl': '1.25rem',
         '3xl': '1.5rem',
+        // Sistema coerente para arredondamentos
+        'button': '0.75rem',
+        'card': '1rem',
+        'input': '0.625rem',
+        'avatar': '9999px',
       },
       boxShadow: {
-        'subtle': '0 2px 10px rgba(0, 0, 0, 0.05)',
-        'medium': '0 4px 20px rgba(0, 0, 0, 0.08)',
-        'strong': '0 10px 30px rgba(0, 0, 0, 0.12)',
-        'glow': '0 0 20px rgba(59, 130, 246, 0.5)',
-        'neon': '0 0 20px rgba(0, 242, 234, 0.5)',
+        // Sistema coerente de elevação com 4 níveis
+        'subtle': '0 2px 5px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
+        'medium': '0 4px 10px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.08)',
+        'strong': '0 10px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0, 0, 0, 0.12)',
+        'intense': '0 20px 40px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.15)',
+        'glow': '0 0 15px rgba(59, 130, 246, 0.4)',
+        'neon': '0 0 15px rgba(0, 242, 234, 0.4)',
+        'green': '0 0 15px rgba(16, 185, 129, 0.4)',
+        'purple': '0 0 15px rgba(139, 92, 246, 0.4)',
+        'inner-light': 'inset 0 2px 4px rgba(0, 0, 0, 0.05)',
       },
       gridTemplateColumns: {
         'fluid': 'repeat(auto-fit, minmax(250px, 1fr))',
         '12': 'repeat(12, minmax(0, 1fr))',
+        '16': 'repeat(16, minmax(0, 1fr))',
+        'auto-fill-sm': 'repeat(auto-fill, minmax(150px, 1fr))',
+        'auto-fill-md': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'auto-fill-lg': 'repeat(auto-fill, minmax(350px, 1fr))',
       },
       backdropBlur: {
         xs: '2px',
@@ -110,6 +143,7 @@ const config: Config = {
         md: '8px',
         lg: '12px',
         xl: '16px',
+        '2xl': '24px',
       },
       keyframes: {
         "accordion-down": {
@@ -121,8 +155,8 @@ const config: Config = {
           to: { height: "0" },
         },
         'glow': {
-          '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(0, 242, 234, 0.2)' },
-          '50%': { opacity: '0.7', boxShadow: '0 0 30px rgba(0, 242, 234, 0.4)' },
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 15px rgba(0, 242, 234, 0.2)' },
+          '50%': { opacity: '0.7', boxShadow: '0 0 25px rgba(0, 242, 234, 0.4)' },
         },
         'status-pulse': {
           '0%, 100%': { opacity: '0.6' },
@@ -146,7 +180,7 @@ const config: Config = {
         },
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-15px)' },
         },
         'scale': {
           '0%': { transform: 'scale(1)' },
@@ -158,7 +192,7 @@ const config: Config = {
         },
         'bounce-subtle': {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' },
+          '50%': { transform: 'translateY(-3px)' },
         },
         'ripple': {
           '0%': { transform: 'scale(0)', opacity: '1' },
@@ -172,6 +206,27 @@ const config: Config = {
           '0%': { transform: 'translateX(-20px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
         },
+        // Novas animações
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        },
+        'reveal': {
+          '0%': { transform: 'scaleX(0)', transformOrigin: 'left' },
+          '100%': { transform: 'scaleX(1)', transformOrigin: 'left' }
+        },
+        'typing': {
+          '0%': { width: '0' },
+          '100%': { width: '100%' }
+        },
+        'blink': {
+          '0%, 100%': { borderColor: 'transparent' },
+          '50%': { borderColor: 'currentColor' }
+        },
+        'morph': {
+          '0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+          '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -179,16 +234,21 @@ const config: Config = {
         'glow': 'glow 2s ease-in-out infinite',
         'status-pulse': 'status-pulse 1.5s ease-in-out infinite',
         'pulse-slow': 'pulse-slow 2s ease-in-out infinite',
-        'grow': 'grow 1s ease-out forwards',
-        'appear': 'appear 0.5s ease-out forwards',
+        'grow': 'grow 0.8s ease-out forwards',
+        'appear': 'appear 0.4s ease-out forwards',
         'spin-slow': 'spin-slow 3s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
+        'float': 'float 5s ease-in-out infinite',
         'scale': 'scale 0.3s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
         'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
         'ripple': 'ripple 1s ease-out forwards',
-        'slide-left': 'slide-left 0.5s ease-out forwards',
-        'slide-right': 'slide-right 0.5s ease-out forwards',
+        'slide-left': 'slide-left 0.4s ease-out forwards',
+        'slide-right': 'slide-right 0.4s ease-out forwards',
+        // Novas animações
+        'shimmer': 'shimmer 2s infinite',
+        'reveal': 'reveal 0.6s ease-out forwards',
+        'typing': 'typing 2s steps(40, end), blink .7s step-end infinite',
+        'morph': 'morph 8s ease-in-out infinite'
       },
     },
   },
