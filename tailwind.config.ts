@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				jockepay: {
+					blue: '#1F6FEB',
+					darkblue: '#0A2E69',
+					neon: '#00FFCC',
+					dark: '#0A192F',
+					light: '#F8FAFC'
 				}
+			},
+			fontFamily: {
+				sans: ['Inter', 'sans-serif'],
+				heading: ['Space Grotesk', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +96,32 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'flow': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'fade-up': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'flow': 'flow 8s ease-in-out infinite',
+				'fade-up': 'fade-up 0.8s ease-out forwards'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-hero': 'linear-gradient(to bottom right, #1F6FEB, #0A2E69)',
+				'gradient-card': 'linear-gradient(to bottom, rgba(31,111,235,0.05), rgba(0,255,204,0.05))'
 			}
 		}
 	},
