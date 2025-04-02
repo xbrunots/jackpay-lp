@@ -41,23 +41,30 @@ const HeroSection = () => {
               Infraestrutura de pagamentos do futuro
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 leading-tight tracking-tight" style={{ lineHeight: '1.3', fontWeight: 600 }}>
               <span className="text-jockepay-neon font-bold">Orquestre</span> pagamentos com <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon">autonomia</span> e escala.
             </h1>
             
-            <p className="text-lg text-white/90 mb-8 max-w-xl">
+            <p className="text-lg text-white/80 mb-8 max-w-xl" style={{ fontSize: '18px' }}>
               Integre múltiplos PSPs, aumente sua taxa de aprovação e otimize transações sem depender de checkout próprio.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#simulator" className="relative overflow-hidden group py-4 px-6 bg-gradient-to-r from-jockepay-blue to-jockepay-neon text-white font-medium rounded-xl flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:shadow-jockepay-blue/30">
+              <a 
+                href="#simulator" 
+                className="relative overflow-hidden group py-4 px-6 bg-gradient-to-r from-jockepay-blue to-jockepay-neon text-white font-medium rounded-xl flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:shadow-jockepay-blue/30 hover:scale-102"
+              >
                 <span className="absolute inset-0 w-0 bg-white/20 transition-all duration-300 ease-out group-hover:w-full"></span>
                 <span className="relative flex items-center gap-2">
                   Simule seu ganho <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </a>
               
-              <a href="#contact" className="py-4 px-6 backdrop-blur-sm bg-white/10 border border-white/20 text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-white/15 hover:border-white/30">
+              <a 
+                href="#contact" 
+                className="py-4 px-6 backdrop-blur-sm bg-white/10 border border-white/20 text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all duration-300 hover:bg-white/15 hover:border-white/30 hover:scale-102"
+                style={{ border: '1px solid rgba(255,255,255,0.2)' }}
+              >
                 Agende uma demonstração <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -79,7 +86,7 @@ const HeroSection = () => {
                   <div className="flex justify-between mb-6">
                     <div className="text-sm text-white font-medium">Orquestração em tempo real</div>
                     <div className="text-xs px-2.5 py-0.5 rounded-full bg-jockepay-success/30 text-jockepay-success flex items-center">
-                      <span className="w-1.5 h-1.5 bg-jockepay-success rounded-full mr-1.5 animate-status-pulse"></span>
+                      <span className="w-1.5 h-1.5 bg-jockepay-success rounded-full mr-1.5 animate-[pulse_1.5s_ease-in-out_infinite]"></span>
                       Ao vivo
                     </div>
                   </div>
@@ -87,7 +94,7 @@ const HeroSection = () => {
                   {/* Payment Routes Visualization - Updated for better fallback visualization */}
                   <div className="relative h-72">
                     {/* Origin */}
-                    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-jockepay-blue/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-jockepay-blue/40 animate-node-pulse">
+                    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-jockepay-blue/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-jockepay-blue/40 animate-[pulse_2s_ease-in-out_infinite]">
                       <div className="w-10 h-10 bg-jockepay-blue rounded-full flex items-center justify-center text-white text-xs font-medium">TX</div>
                     </div>
                     

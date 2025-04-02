@@ -56,11 +56,11 @@ const BenefitsSection = () => {
           <div className="inline-block mb-4">
             <span className="backdrop-blur-sm bg-jockepay-neon/10 dark:bg-jockepay-neon/10 border border-jockepay-neon/20 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-foreground">
+          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-foreground" style={{ lineHeight: '1.3', fontWeight: 600 }}>
             Infraestrutura de pagamentos para
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon ml-2 font-bold">empresas que querem crescer</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" style={{ fontSize: '18px', color: 'rgba(255,255,255,0.8)' }}>
             Otimize sua operação mantendo total autonomia e controle sobre sua infraestrutura de pagamentos.
           </p>
         </div>
@@ -69,23 +69,27 @@ const BenefitsSection = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className={`group relative backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-jockepay-blue/10 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ animationDelay: `${index * 0.1}s`, transitionDelay: `${index * 0.1}s` }}
+              className={`group relative backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-jockepay-blue/10 hover:scale-[1.02] ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                animationDelay: `${index * 0.1}s`, 
+                transitionDelay: `${index * 0.1}s`,
+                boxShadow: '0 4px 16px rgba(0,0,0,0.05)'
+              }}
             >
               {/* Subtle border */}
-              <div className="absolute inset-0 border border-white/20 dark:border-white/10 rounded-2xl"></div>
+              <div className="absolute inset-0 border border-white/20 dark:border-white/10 rounded-lg"></div>
               
               {/* Hover effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/10 to-jockepay-neon/10 transition-opacity duration-500"></div>
               
               {/* Content */}
-              <div className="relative p-8">
+              <div className="relative p-8 py-10">
                 <div className="mb-6">
                   <div className="p-3 bg-white/10 dark:bg-white/10 backdrop-blur-sm w-12 h-12 flex items-center justify-center rounded-xl border border-white/20 group-hover:scale-110 transition-transform duration-300">
                     {benefit.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-medium mb-3 group-hover:text-jockepay-neon transition-colors">{benefit.title}</h3>
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-jockepay-neon transition-colors" style={{ fontWeight: 600, color: '#0f172a' }}>{benefit.title}</h3>
                 <p className="text-muted-foreground text-sm mb-6">{benefit.description}</p>
                 <div className="pt-2 border-t border-white/10">
                   <a href="#contact" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
@@ -98,10 +102,10 @@ const BenefitsSection = () => {
         </div>
         
         {/* Additional feature highlight */}
-        <div className={`mt-16 backdrop-blur-sm bg-jockepay-dark/30 rounded-2xl border border-white/10 p-6 md:p-10 transition-all duration-700 delay-500 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`mt-16 backdrop-blur-sm bg-jockepay-dark/30 rounded-xl border border-white/10 p-6 md:p-10 transition-all duration-700 delay-500 hover:shadow-lg hover:shadow-jockepay-blue/10 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-gradient-to-br from-jockepay-blue to-jockepay-neon rounded-xl flex items-center justify-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-jockepay-blue to-jockepay-neon rounded-xl flex items-center justify-center animate-pulse-slow">
                 <Zap size={32} className="text-white" />
               </div>
             </div>
@@ -110,7 +114,7 @@ const BenefitsSection = () => {
               <p className="text-white/80">Nossa tecnologia de orquestração inteligente analisa o perfil de cada transação e escolhe o melhor processador para maximizar as chances de aprovação, aumentando sua receita e satisfação dos clientes.</p>
             </div>
             <div className="flex-shrink-0">
-              <a href="#simulator" className="inline-flex items-center justify-center py-3 px-6 bg-jockepay-neon text-jockepay-dark font-medium rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg group">
+              <a href="#simulator" className="inline-flex items-center justify-center py-3 px-6 bg-jockepay-neon text-jockepay-dark font-medium rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg group hover:scale-[1.02]">
                 Ver demonstração <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </div>

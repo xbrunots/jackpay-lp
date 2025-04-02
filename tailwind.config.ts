@@ -101,8 +101,8 @@ const config: Config = {
         '2xl': ['1.5rem', { lineHeight: '2rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '5xl': ['3rem', { lineHeight: '1.16' }],
-        '6xl': ['3.75rem', { lineHeight: '1.1' }],
+        '5xl': ['3rem', { lineHeight: '1.3' }], // Updated for better spacing
+        '6xl': ['3.75rem', { lineHeight: '1.2' }], // Updated for better spacing
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -113,14 +113,14 @@ const config: Config = {
         '3xl': '1.5rem',
         // Sistema coerente para arredondamentos
         'button': '0.75rem',
-        'card': '1rem',
+        'card': '0.875rem', // Reduced from 1rem for more modern look
         'input': '0.625rem',
         'avatar': '9999px',
       },
       boxShadow: {
         // Sistema coerente de elevação com 4 níveis
         'subtle': '0 2px 5px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
-        'medium': '0 4px 10px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.08)',
+        'medium': '0 4px 16px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.08)', // Updated
         'strong': '0 10px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0, 0, 0, 0.12)',
         'intense': '0 20px 40px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.15)',
         'glow': '0 0 15px rgba(59, 130, 246, 0.4)',
@@ -136,6 +136,7 @@ const config: Config = {
         'auto-fill-sm': 'repeat(auto-fill, minmax(150px, 1fr))',
         'auto-fill-md': 'repeat(auto-fill, minmax(250px, 1fr))',
         'auto-fill-lg': 'repeat(auto-fill, minmax(350px, 1fr))',
+        'radial': 'repeat(6, 1fr)', // For radial layouts
       },
       backdropBlur: {
         xs: '2px',
@@ -144,6 +145,11 @@ const config: Config = {
         lg: '12px',
         xl: '16px',
         '2xl': '24px',
+      },
+      scale: {
+        '102': '1.02', // For subtle hover effects
+        '103': '1.03',
+        '105': '1.05',
       },
       keyframes: {
         "accordion-down": {
@@ -226,6 +232,11 @@ const config: Config = {
         'morph': {
           '0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
           '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' }
+        },
+        'radial-pulse': {
+          '0%': { boxShadow: '0 0 0 0 rgba(0, 242, 234, 0.4)' },
+          '70%': { boxShadow: '0 0 0 10px rgba(0, 242, 234, 0)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(0, 242, 234, 0)' }
         }
       },
       animation: {
@@ -248,7 +259,8 @@ const config: Config = {
         'shimmer': 'shimmer 2s infinite',
         'reveal': 'reveal 0.6s ease-out forwards',
         'typing': 'typing 2s steps(40, end), blink .7s step-end infinite',
-        'morph': 'morph 8s ease-in-out infinite'
+        'morph': 'morph 8s ease-in-out infinite',
+        'radial-pulse': 'radial-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
       },
     },
   },
