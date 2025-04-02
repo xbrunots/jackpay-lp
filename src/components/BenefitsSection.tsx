@@ -1,8 +1,11 @@
 
 import React from 'react';
-import { ArrowRight, Network, Shuffle, BarChart3, LayoutDashboard, RefreshCw } from 'lucide-react';
+import { ArrowRight, Network, Shuffle, BarChart3, LayoutDashboard, RefreshCw, Shield, Zap } from 'lucide-react';
+import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 
 const BenefitsSection = () => {
+  const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
+  
   const benefits = [
     {
       icon: <Network strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
@@ -28,28 +31,32 @@ const BenefitsSection = () => {
       icon: <RefreshCw strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Lógica de fallback",
       description: "Recupere transações recusadas automaticamente através de rotas alternativas."
-    }
+    },
+    {
+      icon: <Shield strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      title: "Segurança avançada",
+      description: "Proteja seus dados e transações com os mais altos padrões de segurança do mercado."
+    },
   ];
 
   return (
-    <section id="benefits" className="py-32 md:py-40 relative">
+    <section 
+      id="benefits" 
+      ref={sectionRef as React.RefObject<HTMLDivElement>}
+      className="py-32 md:py-40 relative bg-gradient-to-b from-background to-jockepay-dark/10"
+    >
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-jockepay-dark to-background z-0"></div>
       <div className="absolute inset-0 bg-mesh-pattern opacity-10 z-0"></div>
       
       {/* Curved top edge */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-jockepay-dark z-0">
-        <svg className="absolute -bottom-px w-full h-24" viewBox="0 0 1440 96" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 96L60 85.3C120 74.7 240 53.3 360 42.7C480 32 600 32 720 37.3C840 42.7 960 53.3 1080 53.3C1200 53.3 1320 42.7 1380 37.3L1440 32V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0V96Z" fill="currentColor" className="text-background" />
-        </svg>
-      </div>
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-jockepay-dark to-transparent z-0"></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-24">
+        <div className={`text-center mb-24 transition-all duration-700 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-block mb-4">
-            <span className="backdrop-blur-sm bg-white/5 dark:bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
+            <span className="backdrop-blur-sm bg-jockepay-neon/10 dark:bg-jockepay-neon/10 border border-jockepay-neon/20 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-foreground">
             Infraestrutura de pagamentos para
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon ml-2 font-bold">empresas que querem crescer</span>
           </h2>
@@ -62,32 +69,52 @@ const BenefitsSection = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className="group relative backdrop-blur-sm bg-white/5 dark:bg-black/5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`group relative backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-jockepay-blue/10 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ animationDelay: `${index * 0.1}s`, transitionDelay: `${index * 0.1}s` }}
             >
               {/* Subtle border */}
-              <div className="absolute inset-0 border border-white/10 dark:border-white/5 rounded-2xl"></div>
+              <div className="absolute inset-0 border border-white/20 dark:border-white/10 rounded-2xl"></div>
               
               {/* Hover effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/5 to-jockepay-neon/5 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/10 to-jockepay-neon/10 transition-opacity duration-500"></div>
               
               {/* Content */}
               <div className="relative p-8">
                 <div className="mb-6">
-                  <div className="p-3 bg-white/5 dark:bg-white/5 backdrop-blur-sm w-12 h-12 flex items-center justify-center rounded-xl border border-white/10">
+                  <div className="p-3 bg-white/10 dark:bg-white/10 backdrop-blur-sm w-12 h-12 flex items-center justify-center rounded-xl border border-white/20 group-hover:scale-110 transition-transform duration-300">
                     {benefit.icon}
                   </div>
                 </div>
                 <h3 className="text-xl font-medium mb-3 group-hover:text-jockepay-neon transition-colors">{benefit.title}</h3>
                 <p className="text-muted-foreground text-sm mb-6">{benefit.description}</p>
-                <div className="pt-2 border-t border-white/5">
-                  <a href="#" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
+                <div className="pt-2 border-t border-white/10">
+                  <a href="#contact" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
                     Saiba mais <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Additional feature highlight */}
+        <div className={`mt-16 backdrop-blur-sm bg-jockepay-dark/30 rounded-2xl border border-white/10 p-6 md:p-10 transition-all duration-700 delay-500 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 bg-gradient-to-br from-jockepay-blue to-jockepay-neon rounded-xl flex items-center justify-center">
+                <Zap size={32} className="text-white" />
+              </div>
+            </div>
+            <div className="flex-grow">
+              <h3 className="text-2xl font-semibold mb-2 text-white">Aumente sua taxa de aprovação em até 15%</h3>
+              <p className="text-white/80">Nossa tecnologia de orquestração inteligente analisa o perfil de cada transação e escolhe o melhor processador para maximizar as chances de aprovação, aumentando sua receita e satisfação dos clientes.</p>
+            </div>
+            <div className="flex-shrink-0">
+              <a href="#simulator" className="inline-flex items-center justify-center py-3 px-6 bg-jockepay-neon text-jockepay-dark font-medium rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg group">
+                Ver demonstração <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
