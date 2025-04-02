@@ -43,10 +43,10 @@ const BenefitsSection = () => {
     <section 
       id="benefits" 
       ref={sectionRef as React.RefObject<HTMLDivElement>}
-      className="py-32 md:py-40 relative bg-gradient-to-b from-background to-jockepay-dark/10"
+      className="py-32 md:py-40 relative bg-gradient-to-b from-black to-jockepay-dark"
     >
       {/* Background elements */}
-      <div className="absolute inset-0 bg-mesh-pattern opacity-10 z-0"></div>
+      <div className="absolute inset-0 bg-mesh-pattern opacity-15 z-0"></div>
       
       {/* Curved top edge */}
       <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-jockepay-dark to-transparent z-0"></div>
@@ -54,13 +54,13 @@ const BenefitsSection = () => {
       <div className="container-custom relative z-10">
         <div className={`text-center mb-24 transition-all duration-700 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-block mb-4">
-            <span className="backdrop-blur-sm bg-jockepay-neon/10 dark:bg-jockepay-neon/10 border border-jockepay-neon/20 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
+            <span className="backdrop-blur-sm bg-jockepay-neon/20 border border-jockepay-neon/30 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-foreground" style={{ lineHeight: '1.3', fontWeight: 600 }}>
+          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-white" style={{ lineHeight: '1.3', fontWeight: 600 }}>
             Infraestrutura de pagamentos para
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon ml-2 font-bold">empresas que querem crescer</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" style={{ fontSize: '18px', color: 'rgba(255,255,255,0.8)' }}>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto" style={{ fontSize: '18px' }}>
             Otimize sua operação mantendo total autonomia e controle sobre sua infraestrutura de pagamentos.
           </p>
         </div>
@@ -69,29 +69,29 @@ const BenefitsSection = () => {
           {benefits.map((benefit, index) => (
             <div 
               key={index} 
-              className={`group relative backdrop-blur-sm bg-white/10 dark:bg-white/5 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:shadow-jockepay-blue/10 hover:scale-[1.02] ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`group relative backdrop-blur-lg bg-black/40 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-jockepay-blue/20 hover:scale-[1.02] ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ 
                 animationDelay: `${index * 0.1}s`, 
                 transitionDelay: `${index * 0.1}s`,
-                boxShadow: '0 4px 16px rgba(0,0,0,0.05)'
+                boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
               }}
             >
               {/* Subtle border */}
-              <div className="absolute inset-0 border border-white/20 dark:border-white/10 rounded-lg"></div>
+              <div className="absolute inset-0 border border-white/30 rounded-lg"></div>
               
               {/* Hover effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/10 to-jockepay-neon/10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/20 to-jockepay-neon/20 transition-opacity duration-500"></div>
               
               {/* Content */}
               <div className="relative p-8 py-10">
                 <div className="mb-6">
-                  <div className="p-3 bg-white/10 dark:bg-white/10 backdrop-blur-sm w-12 h-12 flex items-center justify-center rounded-xl border border-white/20 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-3 bg-black/50 backdrop-blur-lg w-12 h-12 flex items-center justify-center rounded-xl border border-white/30 group-hover:scale-110 transition-transform duration-300">
                     {benefit.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-jockepay-neon transition-colors" style={{ fontWeight: 600, color: '#0f172a' }}>{benefit.title}</h3>
-                <p className="text-muted-foreground text-sm mb-6">{benefit.description}</p>
-                <div className="pt-2 border-t border-white/10">
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-jockepay-neon transition-colors" style={{ fontWeight: 600, color: '#ffffff' }}>{benefit.title}</h3>
+                <p className="text-white/70 text-sm mb-6">{benefit.description}</p>
+                <div className="pt-2 border-t border-white/20">
                   <a href="#contact" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
                     Saiba mais <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                   </a>
@@ -102,10 +102,10 @@ const BenefitsSection = () => {
         </div>
         
         {/* Additional feature highlight */}
-        <div className={`mt-16 backdrop-blur-sm bg-jockepay-dark/30 rounded-xl border border-white/10 p-6 md:p-10 transition-all duration-700 delay-500 hover:shadow-lg hover:shadow-jockepay-blue/10 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`mt-16 backdrop-blur-lg bg-black/50 rounded-xl border border-white/20 p-6 md:p-10 transition-all duration-700 delay-500 hover:shadow-lg hover:shadow-jockepay-blue/20 hover:-translate-y-1 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-gradient-to-br from-jockepay-blue to-jockepay-neon rounded-xl flex items-center justify-center animate-pulse-slow">
+              <div className="w-16 h-16 bg-gradient-to-br from-jockepay-blue to-jockepay-neon rounded-xl flex items-center justify-center animate-pulse-slow shadow-[0_0_20px_rgba(0,242,234,0.4)]">
                 <Zap size={32} className="text-white" />
               </div>
             </div>
@@ -114,7 +114,7 @@ const BenefitsSection = () => {
               <p className="text-white/80">Nossa tecnologia de orquestração inteligente analisa o perfil de cada transação e escolhe o melhor processador para maximizar as chances de aprovação, aumentando sua receita e satisfação dos clientes.</p>
             </div>
             <div className="flex-shrink-0">
-              <a href="#simulator" className="inline-flex items-center justify-center py-3 px-6 bg-jockepay-neon text-jockepay-dark font-medium rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg group hover:scale-[1.02]">
+              <a href="#simulator" className="inline-flex items-center justify-center py-3 px-6 bg-jockepay-neon text-jockepay-dark font-medium rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg group hover:scale-105">
                 Ver demonstração <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
