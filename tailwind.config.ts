@@ -15,6 +15,11 @@ const config: Config = {
       center: true,
       padding: "2rem",
       screens: {
+        "xs": "475px",
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px",
         "2xl": "1400px",
       },
     },
@@ -59,11 +64,52 @@ const config: Config = {
         "jockepay-success": "#00c896",
         "jockepay-warning": "#f59e0b",
         "jockepay-danger": "#ef4444",
+        "jockepay-green": "#10b981",
+        "jockepay-purple": "#8b5cf6",
+        "jockepay-orange": "#f97316",
+        "jockepay-teal": "#14b8a6",
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Space Grotesk', 'sans-serif'],
+      },
+      fontSize: {
+        'xs': ['0.75rem', { lineHeight: '1rem' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+        'base': ['1rem', { lineHeight: '1.5rem' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+        '5xl': ['3rem', { lineHeight: '1.16' }],
+        '6xl': ['3.75rem', { lineHeight: '1.1' }],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        'xl': '1rem',
+        '2xl': '1.25rem',
+        '3xl': '1.5rem',
+      },
+      boxShadow: {
+        'subtle': '0 2px 10px rgba(0, 0, 0, 0.05)',
+        'medium': '0 4px 20px rgba(0, 0, 0, 0.08)',
+        'strong': '0 10px 30px rgba(0, 0, 0, 0.12)',
+        'glow': '0 0 20px rgba(59, 130, 246, 0.5)',
+        'neon': '0 0 20px rgba(0, 242, 234, 0.5)',
+      },
+      gridTemplateColumns: {
+        'fluid': 'repeat(auto-fit, minmax(250px, 1fr))',
+        '12': 'repeat(12, minmax(0, 1fr))',
+      },
+      backdropBlur: {
+        xs: '2px',
+        sm: '4px',
+        md: '8px',
+        lg: '12px',
+        xl: '16px',
       },
       keyframes: {
         "accordion-down": {
@@ -97,7 +143,35 @@ const config: Config = {
         'spin-slow': {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
-        }
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        },
+        'scale': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.05)' },
+        },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'bounce-subtle': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        'ripple': {
+          '0%': { transform: 'scale(0)', opacity: '1' },
+          '100%': { transform: 'scale(4)', opacity: '0' },
+        },
+        'slide-left': {
+          '0%': { transform: 'translateX(20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        'slide-right': {
+          '0%': { transform: 'translateX(-20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -108,6 +182,13 @@ const config: Config = {
         'grow': 'grow 1s ease-out forwards',
         'appear': 'appear 0.5s ease-out forwards',
         'spin-slow': 'spin-slow 3s linear infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'scale': 'scale 0.3s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+        'bounce-subtle': 'bounce-subtle 2s ease-in-out infinite',
+        'ripple': 'ripple 1s ease-out forwards',
+        'slide-left': 'slide-left 0.5s ease-out forwards',
+        'slide-right': 'slide-right 0.5s ease-out forwards',
       },
     },
   },

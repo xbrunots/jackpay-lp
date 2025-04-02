@@ -35,7 +35,7 @@
     --input: 214 32% 91%;
     --ring: 222 84% 5%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -45,6 +45,36 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Elevation system */
+    --elevation-1: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --elevation-2: 0 4px 8px rgba(0, 0, 0, 0.06);
+    --elevation-3: 0 8px 16px rgba(0, 0, 0, 0.08);
+    --elevation-4: 0 12px 24px rgba(0, 0, 0, 0.12);
+    
+    /* Spacing system */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    --space-40: 10rem;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Glass effects */
+    --glass-light: rgba(255, 255, 255, 0.08);
+    --glass-medium: rgba(255, 255, 255, 0.12);
+    --glass-heavy: rgba(255, 255, 255, 0.16);
+    --glass-blur: 12px;
   }
 
   .dark {
@@ -75,6 +105,11 @@
     --border: 217 33% 18%;
     --input: 217 33% 18%;
     --ring: 213 27% 84%;
+    
+    /* Glass effects in dark mode */
+    --glass-light: rgba(0, 0, 0, 0.2);
+    --glass-medium: rgba(0, 0, 0, 0.35);
+    --glass-heavy: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -83,21 +118,69 @@
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-semibold tracking-tight;
   }
 
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed text-base md:text-lg;
+  }
+
+  small {
+    @apply text-sm;
+  }
+}
+
+@layer components {
   /* Custom button styles */
   .btn-primary {
-    @apply bg-jockepay-blue hover:bg-jockepay-darkblue text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-jockepay-blue/20 hover:-translate-y-0.5;
+    @apply bg-jockepay-blue hover:bg-jockepay-blue/90 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 relative overflow-hidden;
+  }
+  
+  .btn-primary::after {
+    @apply content-[''] absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300;
   }
 
   .btn-secondary {
-    @apply bg-transparent border border-jockepay-blue text-jockepay-blue hover:bg-jockepay-blue hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:-translate-y-0.5;
+    @apply bg-transparent border border-jockepay-blue text-jockepay-blue hover:bg-jockepay-blue/5 font-medium px-6 py-3 rounded-xl transition-all duration-300 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 font-medium px-6 py-3 rounded-xl transition-all duration-300;
+  }
+
+  /* Glass cards */
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/5 dark:bg-white/5 border border-white/10 rounded-2xl transition-all duration-300;
+  }
+  
+  .glass-card-hover {
+    @apply glass-card hover:bg-white/10 hover:shadow-medium hover:-translate-y-1;
   }
 
   /* Section styling */
@@ -111,36 +194,58 @@
 
   /* Card effects */
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-jockepay-blue/20 hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-medium hover:-translate-y-1;
   }
 
-  /* Animation classes */
-  .animate-fade-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
+  /* Interactive elements */
+  .interactive-icon {
+    @apply transition-transform duration-300 hover:scale-110 hover:text-jockepay-neon;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium backdrop-blur-md;
+  }
+  
+  .badge-blue {
+    @apply badge bg-jockepay-blue/10 text-jockepay-blue border border-jockepay-blue/20;
+  }
+  
+  .badge-neon {
+    @apply badge bg-jockepay-neon/10 text-jockepay-neon border border-jockepay-neon/20;
+  }
+  
+  .badge-success {
+    @apply badge bg-jockepay-success/10 text-jockepay-success border border-jockepay-success/20;
   }
 
-  .animate-float {
-    animation: float 8s infinite ease-in-out;
+  /* Custom connectors */
+  .section-connector {
+    @apply relative overflow-hidden;
+  }
+  
+  .section-connector::after {
+    @apply content-[''] absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent;
   }
 
-  .animate-float-delayed {
-    animation: float 10s infinite ease-in-out reverse;
-    animation-delay: 2s;
+  /* Grid system */
+  .grid-12 {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-6;
   }
-
-  .animate-data-flow {
-    animation: dataFlow 5s infinite ease-in-out;
+  
+  .col-span-12 {
+    @apply col-span-12;
   }
-
-  .animate-pulse-width {
-    animation: pulseWidth 2s infinite ease-in-out;
+  
+  .col-span-6 {
+    @apply col-span-1 sm:col-span-1 md:col-span-2 lg:col-span-6;
   }
-
-  .animate-grow {
-    animation: grow 2s forwards ease-out;
-    transform-origin: left;
-    transform: scaleX(0);
+  
+  .col-span-4 {
+    @apply col-span-1 sm:col-span-1 md:col-span-2 lg:col-span-4;
+  }
+  
+  .col-span-3 {
+    @apply col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-3;
   }
 }
 
@@ -169,7 +274,7 @@
   }
 }
 
-/* Custom animations */
+/* Custom animations for micro-interactions */
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -227,12 +332,22 @@
   }
 }
 
-/* Additional animations for tailwind.config.ts */
 @keyframes flow {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-10px);
+  }
+}
+
+/* Accessibility utilities */
+@layer utilities {
+  .visually-hidden {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  }
+  
+  .focus-visible {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-jockepay-blue;
   }
 }
