@@ -15,7 +15,8 @@
       "babel__traverse",
       "estree",
       "json-schema"
-    ]
+    ],
+    "noEmit": false
   },
   "include": ["vite.config.ts"]
 }
