@@ -6,33 +6,33 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 213 94% 52%;
+    --primary: 186 100% 47%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 220 14% 96%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 84% 5%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 186 100% 47%;
 
     --radius: 0.75rem;
 
@@ -46,10 +46,10 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Elevation system */
-    --elevation-1: 0 2px 5px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-    --elevation-2: 0 4px 10px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.08);
-    --elevation-3: 0 10px 25px rgba(0, 0, 0, 0.08), 0 5px 10px rgba(0, 0, 0, 0.12);
-    --elevation-4: 0 20px 40px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.15);
+    --elevation-1: 0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+    --elevation-2: 0 4px 8px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.1);
+    --elevation-3: 0 8px 16px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.1);
+    --elevation-4: 0 16px 24px rgba(0, 0, 0, 0.05), 0 6px 12px rgba(0, 0, 0, 0.1);
     
     /* Spacing system */
     --space-1: 0.25rem;
@@ -65,9 +65,9 @@
     --space-40: 10rem;
     
     /* Transitions */
-    --transition-fast: 0.15s ease;
-    --transition-base: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Glass effects */
     --glass-light: rgba(255, 255, 255, 0.1);
@@ -77,33 +77,33 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 11%;
+    --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 11%;
+    --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 213 94% 52%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 186 100% 47%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 217 33% 18%;
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 75%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217 33% 18%;
+    --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 63% 40%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 213 27% 84%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 186 100% 47%;
     
     /* Glass effects in dark mode */
     --glass-light: rgba(0, 0, 0, 0.2);
@@ -118,44 +118,45 @@
   }
 
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth antialiased;
     color-scheme: light dark;
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 
+  /* Melhorias de tipografia */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold tracking-tight;
+    @apply font-heading font-semibold tracking-tight text-foreground;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl leading-[1.1];
   }
 
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+    @apply text-3xl md:text-4xl lg:text-5xl leading-[1.2];
   }
 
   h3 {
-    @apply text-2xl md:text-3xl leading-snug;
+    @apply text-2xl md:text-3xl leading-[1.3];
   }
 
   h4 {
-    @apply text-xl md:text-2xl;
+    @apply text-xl md:text-2xl leading-[1.4];
   }
 
   p {
-    @apply leading-relaxed text-base md:text-lg;
+    @apply leading-relaxed text-base md:text-lg text-foreground/90;
   }
 
   small {
-    @apply text-sm;
+    @apply text-sm text-foreground/80;
   }
 
-  /* Melhorias de acessibilidade - contraste melhorado */
+  /* Melhorias de acessibilidade */
   a:focus-visible, 
   button:focus-visible, 
   input:focus-visible, 
@@ -164,11 +165,13 @@
     @apply outline-none ring-2 ring-jockepay-blue dark:ring-jockepay-neon ring-offset-2 ring-offset-background;
   }
 
+  /* Redução de movimento */
   @media (prefers-reduced-motion: reduce) {
     * {
       @apply transition-none !important;
       animation-duration: 0.001s !important;
       animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
     }
   }
 }
@@ -355,7 +358,7 @@
   
   /* Utilidade para link acessível */
   .link {
-    @apply text-jockepay-blue hover:text-jockepay-blue-dark dark:text-jockepay-neon dark:hover:text-jockepay-neon-light underline underline-offset-2 focus-visible;
+    @apply text-jockepay-blue hover:text-jockepay-blue-dark dark:text-jockepay-neon dark:hover:text-jockepay-neon-light underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-jockepay-blue focus-visible:ring-offset-2;
   }
   
   /* Gradientes sutis */
@@ -437,10 +440,10 @@
 }
 
 @keyframes grow {
-  0% {
+  from {
     transform: scaleX(0);
   }
-  100% {
+  to {
     transform: scaleX(1);
   }
 }
@@ -526,4 +529,88 @@
   .animate-appear {
     animation: fadeInUp 0.5s ease-out forwards;
   }
+}
+
+/* Animações */
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-grow {
+  animation: grow 1s ease-out forwards;
+}
+
+/* Glass Effect */
+.glass {
+  @apply backdrop-blur-lg bg-white/10 border border-white/20;
+}
+
+/* Link Styles */
+.link {
+  @apply text-jockepay-blue hover:text-jockepay-blue-dark dark:text-jockepay-neon dark:hover:text-jockepay-neon-light transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-jockepay-blue focus-visible:ring-offset-2;
+}
+
+/* Button Styles */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.btn-primary {
+  @apply bg-jockepay-blue text-white hover:bg-jockepay-blue-dark focus-visible:ring-jockepay-blue;
+}
+
+.btn-secondary {
+  @apply bg-white/10 text-white hover:bg-white/20 focus-visible:ring-white/20;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm;
+}
+
+/* Form Styles */
+.input {
+  @apply w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-jockepay-blue focus:border-transparent transition-all duration-200;
+}
+
+/* Typography */
+.heading-1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+}
+
+.heading-2 {
+  @apply text-3xl md:text-4xl font-bold tracking-tight;
+}
+
+.heading-3 {
+  @apply text-2xl md:text-3xl font-semibold tracking-tight;
+}
+
+.paragraph {
+  @apply text-base md:text-lg text-gray-600 dark:text-gray-300 leading-relaxed;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus Styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-jockepay-blue ring-offset-2;
+}
+
+/* Selection */
+::selection {
+  @apply bg-jockepay-blue/20 text-jockepay-blue;
 }

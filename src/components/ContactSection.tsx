@@ -1,171 +1,173 @@
-
 import React, { useState } from 'react';
-import { Check, ArrowRight } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { motion } from 'framer-motion';
+import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/Select';
 
-const ContactSection = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  segment: string;
+}
+
+const ContactSection: React.FC = () => {
+  const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    phone: '',
     company: '',
-    volume: '',
+    segment: ''
   });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        volume: '',
-      });
-      
-      // Show success message
-      toast({
-        title: "Mensagem enviada com sucesso!",
-        description: "Nossa equipe entrará em contato em breve.",
-        duration: 5000
-      });
-    }, 1500);
+    // Implementar lógica de envio
+    console.log('Form data:', formData);
   };
-  
+
   return (
-    <section id="contact" className="py-20 relative bg-gradient-to-b from-jockepay-dark to-black">
-      {/* Background elements */}
-      <div className="absolute inset-0 jockepay-pattern-grid opacity-5 z-0"></div>
-      <div className="absolute top-1/4 -right-20 w-64 h-64 bg-jockepay-blue/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/3 -left-20 w-80 h-80 bg-jockepay-neon/10 rounded-full blur-3xl"></div>
+    <section 
+      id="contact" 
+      ref={sectionRef as React.RefObject<HTMLDivElement>}
+      className="relative py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-black via-black/98 to-black/95"
+      aria-label="Contato"
+    >
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.05)_0%,transparent_70%)] z-0"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.02)_0%,transparent_70%)] blur-[100px] z-0"></div>
       
-      <div className="container-custom relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Pronto para escalar seus pagamentos?</h2>
-            <p className="text-lg text-white/80 mb-8">
-              Fale com um de nossos especialistas e descubra como a Jockepay pode ajudar a otimizar sua operação.
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Text content */}
+        <div className="relative z-10">
+          <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-28 max-w-4xl mx-auto">
+            <Badge color="green">Contato</Badge>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 sm:mt-6 mb-4 sm:mb-6">
+              Vamos conversar sobre seu projeto
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-400">
+              Preencha o formulário abaixo e nossa equipe entrará em contato em breve.
             </p>
-            
-            <div className="space-y-4 mb-6">
-              {[
-                "Integração rápida e assistida",
-                "Sem lock-in contratual",
-                "Suporte técnico dedicado"
-              ].map((item, idx) => (
-                <div key={idx} className="flex gap-3">
-                  <div className="mt-0.5">
-                    <div className="w-5 h-5 rounded-full bg-jockepay-blue/20 flex items-center justify-center">
-                      <Check size={12} className="text-jockepay-neon" />
-                    </div>
-                  </div>
-                  <div>
-                    <p className="font-medium text-white">{item}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div>
-            <div className="bg-black/40 backdrop-blur-md rounded-xl p-6 border border-white/10">
-              <h3 className="text-xl font-semibold mb-5 text-white">Fale com um especialista</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Nome completo"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-jockepay-blue/50"
-                    />
-                  </div>
-                  
-                  <div>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="Email corporativo"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-jockepay-blue/50"
-                    />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      placeholder="Empresa"
-                      value={formData.company}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-jockepay-blue/50"
-                    />
-                  </div>
-                  
-                  <div>
-                    <select
-                      id="volume"
-                      name="volume"
-                      value={formData.volume}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/20 text-white appearance-none focus:outline-none focus:border-jockepay-blue/50"
-                    >
-                      <option value="" className="bg-jockepay-dark text-white">Volume mensal</option>
-                      <option value="Até R$ 50 mil" className="bg-jockepay-dark text-white">Até R$ 50 mil</option>
-                      <option value="R$ 50 mil a R$ 200 mil" className="bg-jockepay-dark text-white">R$ 50 mil a R$ 200 mil</option>
-                      <option value="R$ 200 mil a R$ 1 milhão" className="bg-jockepay-dark text-white">R$ 200 mil a R$ 1 milhão</option>
-                      <option value="R$ 1 milhão a R$ 5 milhões" className="bg-jockepay-dark text-white">R$ 1 milhão a R$ 5 milhões</option>
-                      <option value="Acima de R$ 5 milhões" className="bg-jockepay-dark text-white">Acima de R$ 5 milhões</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3 px-6 bg-gradient-to-r from-jockepay-blue to-jockepay-neon text-white font-medium rounded-lg flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-jockepay-blue/20 disabled:opacity-70"
-                >
-                  {isSubmitting ? 'Enviando...' : (
-                    <>
-                      Falar com um especialista <ArrowRight size={16} />
-                    </>
-                  )}
-                </button>
-                
-                <p className="text-xs text-white/60 text-center">
-                  Ao enviar, você concorda com nossa política de privacidade.
-                </p>
-              </form>
-            </div>
           </div>
         </div>
+
+        {/* Contact form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={sectionIsVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="relative z-10 max-w-2xl mx-auto"
+        >
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
+                  Nome
+                </label>
+                <Input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Seu nome completo"
+                  required
+                  className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                  Email
+                </label>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="seu@email.com"
+                  required
+                  className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
+                  Telefone
+                </label>
+                <Input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="(00) 00000-0000"
+                  required
+                  className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-white mb-2">
+                  Empresa
+                </label>
+                <Input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Nome da sua empresa"
+                  required
+                  className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="segment" className="block text-sm font-medium text-white mb-2">
+                Segmento
+              </label>
+              <Select
+                value={formData.segment}
+                onValueChange={(value) => setFormData(prev => ({ ...prev, segment: value }))}
+              >
+                <SelectTrigger className="w-full bg-black/50 border-white/10 text-white">
+                  <SelectValue placeholder="Selecione seu segmento" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ecommerce">E-commerce</SelectItem>
+                  <SelectItem value="saas">SaaS</SelectItem>
+                  <SelectItem value="fintech">Fintech</SelectItem>
+                  <SelectItem value="logistics">Logística</SelectItem>
+                  <SelectItem value="education">Educação</SelectItem>
+                  <SelectItem value="marketplace">Marketplace</SelectItem>
+                  <SelectItem value="other">Outro</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex justify-center">
+              <Button
+                type="submit"
+                color="green"
+                className="w-full sm:w-auto"
+              >
+                Enviar
+              </Button>
+            </div>
+          </form>
+        </motion.div>
       </div>
     </section>
   );

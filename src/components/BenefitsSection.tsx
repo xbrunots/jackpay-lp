@@ -1,123 +1,117 @@
-
-import React from 'react';
+import React, { useMemo, Suspense } from 'react';
 import { ArrowRight, Network, Shuffle, BarChart3, LayoutDashboard, RefreshCw, Shield, Zap } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
 
-const BenefitsSection = () => {
-  const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
+// Animações reutilizáveis
+const fadeInUpVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+// Componente de loading para lazy loading
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center h-32" role="status" aria-label="Carregando...">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-jockepay-neon"></div>
+  </div>
+);
+
+interface Benefit {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  tooltip?: string;
+}
+
+const BenefitsSection: React.FC = () => {
+  const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ 
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
   
-  const benefits = [
+  const benefits = useMemo<Benefit[]>(() => [
     {
-      icon: <Network strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      icon: <Network className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Orquestração inteligente",
-      description: "Distribua transações entre múltiplos provedores de forma estratégica e otimizada."
+      description: "Distribua transações entre múltiplos provedores de forma estratégica e otimizada.",
+      tooltip: "Sistema inteligente que distribui automaticamente as transações entre diferentes provedores"
     },
     {
-      icon: <Shuffle strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
-      title: "Roteamento automático",
-      description: "Direcione cada transação para o PSP com maior probabilidade de aprovação em tempo real."
+      icon: <Shuffle className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      title: "Plugin Play",
+      description: "Ative e desative provedores e adquirentes com rapidez e eficiência, a hora que quiser com poucos cliques.",
+      tooltip: "Gerenciamento flexível de provedores de pagamento"
     },
     {
-      icon: <BarChart3 strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      icon: <BarChart3 className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Analytics em tempo real",
-      description: "Visualize métricas de desempenho e taxas de aprovação para tomar decisões baseadas em dados."
+      description: "Visualize métricas de desempenho e taxas de aprovação para tomar decisões baseadas em dados.",
+      tooltip: "Dashboard com análises em tempo real de todas as transações"
     },
     {
-      icon: <LayoutDashboard strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      icon: <LayoutDashboard className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Dashboard centralizado",
-      description: "Gerencie todas as suas transações em uma única interface intuitiva e poderosa."
+      description: "Gerencie todas as suas transações em uma única interface intuitiva e poderosa.",
+      tooltip: "Interface unificada para gerenciamento de pagamentos"
     },
     {
-      icon: <RefreshCw strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      icon: <RefreshCw className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Lógica de fallback",
-      description: "Recupere transações recusadas automaticamente através de rotas alternativas."
+      description: "Recupere transações recusadas automaticamente através de rotas alternativas.",
+      tooltip: "Sistema automático de recuperação de transações recusadas"
     },
     {
-      icon: <Shield strokeWidth={1.5} className="text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
+      icon: <Shield className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Segurança avançada",
-      description: "Proteja seus dados e transações com os mais altos padrões de segurança do mercado."
+      description: "Proteja seus dados e transações com os mais altos padrões de segurança do mercado.",
+      tooltip: "Proteção de dados com criptografia avançada"
     },
-  ];
+  ], []);
 
   return (
     <section 
       id="benefits" 
       ref={sectionRef as React.RefObject<HTMLDivElement>}
-      className="py-32 md:py-40 relative bg-gradient-to-b from-black to-jockepay-dark"
+      className="relative min-h-screen py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-black via-black/98 to-black/95"
+      aria-label="Benefícios"
     >
-      {/* Background elements */}
-      <div className="absolute inset-0 bg-mesh-pattern opacity-15 z-0"></div>
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.05)_0%,transparent_70%)] z-0"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.02)_0%,transparent_70%)] blur-[100px] z-0"></div>
       
-      {/* Curved top edge */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-jockepay-dark to-transparent z-0"></div>
-      
-      <div className="container-custom relative z-10">
-        <div className={`text-center mb-24 transition-all duration-700 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-block mb-4">
-            <span className="backdrop-blur-sm bg-jockepay-neon/20 border border-jockepay-neon/30 px-4 py-1.5 rounded-full text-sm font-medium text-jockepay-neon">Recursos poderosos</span>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Text content */}
+        <div className="relative z-10">
+          <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-28 max-w-4xl mx-auto">
+            <Badge color="green">Benefícios</Badge>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 sm:mt-6 mb-4 sm:mb-6">
+              Por que escolher a JockPay?
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-400">
+              Uma plataforma completa que simplifica e otimiza sua operação de pagamentos.
+            </p>
           </div>
-          <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-white" style={{ lineHeight: '1.3', fontWeight: 600 }}>
-            Infraestrutura de pagamentos para
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-jockepay-blue to-jockepay-neon ml-2 font-bold">empresas que querem crescer</span>
-          </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto" style={{ fontSize: '18px' }}>
-            Otimize sua operação mantendo total autonomia e controle sobre sua infraestrutura de pagamentos.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {benefits.map((benefit, index) => (
-            <div 
-              key={index} 
-              className={`group relative backdrop-blur-lg bg-black/40 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-lg hover:shadow-jockepay-blue/20 hover:scale-[1.02] ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ 
-                animationDelay: `${index * 0.1}s`, 
-                transitionDelay: `${index * 0.1}s`,
-                boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
-              }}
-            >
-              {/* Subtle border */}
-              <div className="absolute inset-0 border border-white/30 rounded-lg"></div>
-              
-              {/* Hover effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-jockepay-blue/20 to-jockepay-neon/20 transition-opacity duration-500"></div>
-              
-              {/* Content */}
-              <div className="relative p-8 py-10">
-                <div className="mb-6">
-                  <div className="p-3 bg-black/50 backdrop-blur-lg w-12 h-12 flex items-center justify-center rounded-xl border border-white/30 group-hover:scale-110 transition-transform duration-300">
-                    {benefit.icon}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-jockepay-neon transition-colors" style={{ fontWeight: 600, color: '#ffffff' }}>{benefit.title}</h3>
-                <p className="text-white/70 text-sm mb-6">{benefit.description}</p>
-                <div className="pt-2 border-t border-white/20">
-                  <a href="#contact" className="inline-flex items-center text-jockepay-neon text-sm font-medium gap-1 group-hover:gap-2 transition-all">
-                    Saiba mais <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {/* Additional feature highlight */}
-        <div className={`mt-16 backdrop-blur-lg bg-black/50 rounded-xl border border-white/20 p-6 md:p-10 transition-all duration-700 delay-500 hover:shadow-lg hover:shadow-jockepay-blue/20 hover:-translate-y-1 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-gradient-to-br from-jockepay-blue to-jockepay-neon rounded-xl flex items-center justify-center animate-pulse-slow shadow-[0_0_20px_rgba(0,242,234,0.4)]">
-                <Zap size={32} className="text-white" />
-              </div>
-            </div>
-            <div className="flex-grow">
-              <h3 className="text-2xl font-semibold mb-2 text-white">Aumente sua taxa de aprovação em até 15%</h3>
-              <p className="text-white/80">Nossa tecnologia de orquestração inteligente analisa o perfil de cada transação e escolhe o melhor processador para maximizar as chances de aprovação, aumentando sua receita e satisfação dos clientes.</p>
-            </div>
-            <div className="flex-shrink-0">
-              <a href="#simulator" className="inline-flex items-center justify-center py-3 px-6 bg-jockepay-neon text-jockepay-dark font-medium rounded-xl transition-all duration-300 hover:bg-white hover:shadow-lg group hover:scale-105">
-                Ver demonstração <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
+        {/* Benefits grid */}
+        <div className="relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={sectionIsVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-black/50 backdrop-blur-lg rounded-2xl border border-white/10 p-8 hover:border-jockepay-green/50 transition-colors duration-300"
+              >
+                <div className="text-4xl mb-4">{benefit.icon}</div>
+                <h3 className="text-lg sm:text-xl font-semibold text-white mb-3">{benefit.title}</h3>
+                <p className="text-sm sm:text-base text-gray-400">{benefit.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -125,4 +119,4 @@ const BenefitsSection = () => {
   );
 };
 
-export default BenefitsSection;
+export default React.memo(BenefitsSection);

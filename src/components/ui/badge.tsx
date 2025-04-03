@@ -1,36 +1,50 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import React from 'react';
+import { cn } from '@/lib/utils';
 
-import { cn } from "@/lib/utils"
-
-const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    variants: {
-      variant: {
-        default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
-
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
-
-function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
-  )
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: 'default' | 'outline' | 'secondary';
+  color?: 'green' | 'blue' | 'neon';
 }
 
-export { Badge, badgeVariants }
+const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ className, variant = 'default', color = 'green', children, ...props }, ref) => {
+    const baseStyles = 'inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-opacity-50';
+    
+    const variants = {
+      default: {
+        green: 'bg-jockepay-green/20 border border-jockepay-green/30 text-white',
+        blue: 'bg-jockepay-blue/20 border border-jockepay-blue/30 text-white',
+        neon: 'bg-jockepay-neon/20 border border-jockepay-neon/30 text-white'
+      },
+      outline: {
+        green: 'border border-jockepay-green/40 text-jockepay-green hover:border-jockepay-green/60',
+        blue: 'border border-jockepay-blue/40 text-jockepay-blue hover:border-jockepay-blue/60',
+        neon: 'border border-jockepay-neon/40 text-jockepay-neon hover:border-jockepay-neon/60'
+      },
+      secondary: {
+        green: 'bg-jockepay-green/10 text-jockepay-green hover:bg-jockepay-green/20',
+        blue: 'bg-jockepay-blue/10 text-jockepay-blue hover:bg-jockepay-blue/20',
+        neon: 'bg-jockepay-neon/10 text-jockepay-neon hover:bg-jockepay-neon/20'
+      }
+    };
+    
+    return (
+      <span
+        ref={ref}
+        className={cn(
+          baseStyles,
+          variants[variant][color],
+          'px-4 py-1.5',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </span>
+    );
+  }
+);
+
+Badge.displayName = 'Badge';
+
+export { Badge };
