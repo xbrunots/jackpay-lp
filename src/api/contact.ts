@@ -32,8 +32,8 @@ export const sendContactForm = async (formData: ContactFormData) => {
       },
       body: JSON.stringify({
         sender: {
-          name: formData.name,
-          email: formData.email
+          name: 'JockPay',
+          email: 'noreply@jockbase.com'
         },
         to: [
           {
