@@ -18,7 +18,8 @@
       "estree",
       "json-schema"
     ],
-    "noEmit": false
+    "noEmit": false,
+    "emitDeclarationOnly": false
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
   "exclude": ["node_modules", "dist"]

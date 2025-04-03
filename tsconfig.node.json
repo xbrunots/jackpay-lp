@@ -16,7 +16,8 @@
       "estree",
       "json-schema"
     ],
-    "noEmit": false
+    "noEmit": false,
+    "emitDeclarationOnly": false
   },
   "include": ["vite.config.ts"]
 }
