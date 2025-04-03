@@ -6,13 +6,13 @@ import { Button } from './ui/button';
 
 const SimulatorSection = () => {
   const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
-  
+
   const [formData, setFormData] = useState({
     monthlyVolume: '100000',
     currentApprovalRate: '85',
     pspCount: '1'
   });
-  
+
   const [showResults, setShowResults] = useState(false);
   const [simulationResults, setSimulationResults] = useState({
     additionalApproval: 0,
@@ -29,12 +29,12 @@ const SimulatorSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Simple simulation calculation
     const volume = parseFloat(formData.monthlyVolume);
     const currentApproval = parseFloat(formData.currentApprovalRate) / 100;
     const pspCount = parseInt(formData.pspCount);
-    
+
     // Estimated improvement based on PSP count (simplified model)
     let improvementRate = 0;
     if (pspCount === 1) {
@@ -44,21 +44,21 @@ const SimulatorSection = () => {
     } else {
       improvementRate = 0.07; // 7% with three or more PSPs
     }
-    
+
     // Ensure we don't exceed 100% approval
     const newApprovalRate = Math.min(currentApproval + improvementRate, 0.99);
     const additionalApproval = newApprovalRate - currentApproval;
-    
+
     // Calculate additional revenue
     const additionalRevenue = volume * additionalApproval;
     const annualRevenue = additionalRevenue * 12;
-    
+
     setSimulationResults({
       additionalApproval: additionalApproval * 100, // Convert to percentage
       additionalRevenue,
       annualRevenue
     });
-    
+
     setShowResults(true);
   };
 
@@ -70,14 +70,14 @@ const SimulatorSection = () => {
   };
 
   return (
-    <section 
-      id="simulator" 
+    <section
+      id="simulator"
       ref={sectionRef as React.RefObject<HTMLDivElement>}
       className="py-32 md:py-40 bg-black relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.05)_0%,transparent_70%)]"></div>
-      
+
       <div className="container-custom relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-700 ${sectionIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -96,14 +96,14 @@ const SimulatorSection = () => {
             <div className="flex flex-col lg:flex-row">
               <div className="flex-1 p-8 border-r border-white/10">
                 <h3 className="text-xl font-medium mb-6 text-white">Dados da sua operação</h3>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div>
                     <label htmlFor="monthlyVolume" className="block mb-2 text-sm font-medium text-white">
                       Volume mensal de transações (R$)
                     </label>
                     <div className="relative">
-                      <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white">R$</span>
+                      <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white"  style={{ zIndex: 999999999 }} >R$</span>
                       <input
                         type="text"
                         id="monthlyVolume"
@@ -134,7 +134,7 @@ const SimulatorSection = () => {
                         className="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-jockepay-green [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:shadow-black/20 [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95"
                       />
                       <div className="absolute inset-0 pointer-events-none">
-                        <div 
+                        <div
                           className="absolute h-2 bg-jockepay-green rounded-full"
                           style={{ width: `${((parseInt(formData.currentApprovalRate) - 50) / (98 - 50)) * 100}%` }}
                         />
@@ -169,7 +169,7 @@ const SimulatorSection = () => {
                       </div>
                     </div>
                   </div>
-                    
+
                   <Button
                     onClick={handleSubmit}
                     color="green"
@@ -198,9 +198,9 @@ const SimulatorSection = () => {
                         Simulação concluída
                       </div>
                     </div>
-                    
+
                     <h3 className="text-xl font-medium mb-8 text-white">Resultados da simulação</h3>
-                    
+
                     <div className="backdrop-blur-md bg-black/60 rounded-xl p-6 border border-white/20 mb-8 animate-appear">
                       <div className="text-center">
                         <p className="text-sm text-white mb-2">Resultado estimado com a JockPay</p>
@@ -213,7 +213,7 @@ const SimulatorSection = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex-1 space-y-6">
                       <div className="backdrop-blur-sm bg-black/60 p-4 rounded-xl border border-white/20 flex items-center hover:bg-black/70 transition-all">
                         <div className="p-2 rounded-lg bg-jockepay-green/30 text-white mr-4">
@@ -236,7 +236,7 @@ const SimulatorSection = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="backdrop-blur-sm bg-black/60 p-4 rounded-xl border border-white/20 flex items-center hover:bg-black/70 transition-all">
                         <div className="p-2 rounded-lg bg-jockepay-green/30 text-white mr-4">
                           <PieChart strokeWidth={1.5} size={20} className="text-white" />
@@ -249,10 +249,10 @@ const SimulatorSection = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="pt-8 mt-auto">
-                      <a 
-                        href="#contact" 
+                      <a
+                        href="#contact"
                         className="w-full py-4 px-6 backdrop-blur-lg bg-black/50 rounded-xl border border-white/30 text-white font-medium flex items-center justify-center gap-2 transition-all duration-300 hover:bg-black/60 hover:border-white/40 group"
                       >
                         Falar com um especialista e receber plano personalizado <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

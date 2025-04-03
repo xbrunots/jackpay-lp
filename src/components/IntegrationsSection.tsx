@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ExternalLink, CheckCircle, Clock, AlertCircle, Zap, Shield, ArrowRight, X } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion, useAnimation } from 'framer-motion';
 
 // Tipos TypeScript
 interface PSP {
@@ -186,9 +186,10 @@ const PSPCard: React.FC<{
   radius: number; 
   isSelected: boolean;
   onSelect: () => void;
-}> = ({ psp, angle, radius, isSelected, onSelect }) => {
-  const x = Math.cos(angle) * radius;
-  const y = Math.sin(angle) * radius;
+  rotationOffset: number;
+}> = ({ psp, angle, radius, isSelected, onSelect, rotationOffset }) => {
+  const x = Math.cos(angle + rotationOffset) * radius;
+  const y = Math.sin(angle + rotationOffset) * radius;
 
   return (
     <motion.div
@@ -270,6 +271,7 @@ const PSPCard: React.FC<{
 const IntegrationsSection: React.FC<IntegrationSectionProps> = ({ className = '' }) => {
   const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
   const [selectedPSP, setSelectedPSP] = useState<PSP | null>(null);
+  const [rotationOffset, setRotationOffset] = useState(0);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -283,6 +285,17 @@ const IntegrationsSection: React.FC<IntegrationSectionProps> = ({ className = ''
 
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, 50]), springConfig);
   const integrations = useMemo(() => INTEGRATIONS_DATA, []);
+
+  // Efeito para animação de rotação contínua
+  useEffect(() => {
+    if (!sectionIsVisible) return;
+    
+    const interval = setInterval(() => {
+      setRotationOffset(prev => (prev + 0.005) % (2 * Math.PI));
+    }, 50);
+    
+    return () => clearInterval(interval);
+  }, [sectionIsVisible]);
 
   // Calcula o ângulo para cada PSP em um único círculo
   const getPSPPositions = (psps: PSP[], isMobile = false) => {
@@ -339,8 +352,8 @@ const IntegrationsSection: React.FC<IntegrationSectionProps> = ({ className = ''
                     decoding="async"
                     fetchPriority="low"
                   />
-                      </div>
-                    </div>
+                </div>
+              </div>
 
               {/* Círculo único de PSPs */}
               <div className="absolute inset-0 flex items-center justify-center">
@@ -352,13 +365,14 @@ const IntegrationsSection: React.FC<IntegrationSectionProps> = ({ className = ''
                       radius={radius}
                       isSelected={selectedPSP?.id === psp.id}
                       onSelect={() => setSelectedPSP(selectedPSP?.id === psp.id ? null : psp)}
+                      rotationOffset={rotationOffset}
                     />
                   </div>
                 ))}
               </div>
             </motion.div>
           </motion.div>
-            </div>
+        </div>
 
         {/* Bottom text */}
         <div className="relative z-10">

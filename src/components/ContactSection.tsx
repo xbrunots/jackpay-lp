@@ -5,6 +5,8 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { sendContactForm } from '../api/contact';
+import { useToast } from './ui/use-toast';
 
 interface FormData {
   name: string;
@@ -16,6 +18,8 @@ interface FormData {
 
 const ContactSection: React.FC = () => {
   const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -29,10 +33,41 @@ const ContactSection: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Implementar lógica de envio
-    console.log('Form data:', formData);
+    setIsSubmitting(true);
+    
+    try {
+      await sendContactForm(formData);
+      
+      // Limpar o formulário após o envio
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        segment: ''
+      });
+      
+      // Mostrar mensagem de sucesso
+      toast({
+        title: "Mensagem enviada!",
+        description: "Entraremos em contato em breve.",
+        variant: "default",
+      });
+      
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      
+      // Mostrar mensagem de erro
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Por favor, tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -81,6 +116,7 @@ const ContactSection: React.FC = () => {
                   onChange={handleChange}
                   placeholder="Seu nome completo"
                   required
+                  disabled={isSubmitting}
                   className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
                 />
               </div>
@@ -96,6 +132,7 @@ const ContactSection: React.FC = () => {
                   onChange={handleChange}
                   placeholder="seu@email.com"
                   required
+                  disabled={isSubmitting}
                   className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
                 />
               </div>
@@ -114,6 +151,7 @@ const ContactSection: React.FC = () => {
                   onChange={handleChange}
                   placeholder="(00) 00000-0000"
                   required
+                  disabled={isSubmitting}
                   className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
                 />
               </div>
@@ -129,6 +167,7 @@ const ContactSection: React.FC = () => {
                   onChange={handleChange}
                   placeholder="Nome da sua empresa"
                   required
+                  disabled={isSubmitting}
                   className="w-full bg-black/50 border-white/10 text-white placeholder:text-gray-500"
                 />
               </div>
@@ -141,6 +180,7 @@ const ContactSection: React.FC = () => {
               <Select
                 value={formData.segment}
                 onValueChange={(value) => setFormData(prev => ({ ...prev, segment: value }))}
+                disabled={isSubmitting}
               >
                 <SelectTrigger className="w-full bg-black/50 border-white/10 text-white">
                   <SelectValue placeholder="Selecione seu segmento" />
@@ -162,8 +202,9 @@ const ContactSection: React.FC = () => {
                 type="submit"
                 color="green"
                 className="w-full sm:w-auto"
+                disabled={isSubmitting}
               >
-                Enviar
+                {isSubmitting ? 'Enviando...' : 'Enviar'}
               </Button>
             </div>
           </form>

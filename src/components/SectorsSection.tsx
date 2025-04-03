@@ -26,7 +26,7 @@ interface Sector {
 
 const SectorsSection = () => {
   const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
-  
+
   const sectors: Sector[] = [
     {
       id: "ecommerce",
@@ -79,8 +79,8 @@ const SectorsSection = () => {
   ];
 
   return (
-    <section 
-      id="sectors" 
+    <section
+      id="sectors"
       ref={sectionRef as React.RefObject<HTMLDivElement>}
       className="relative min-h-screen py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-b from-black via-black/98 to-black/95"
       aria-label="Segmentos"
@@ -88,7 +88,7 @@ const SectorsSection = () => {
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.05)_0%,transparent_70%)] z-0"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,242,234,0.02)_0%,transparent_70%)] blur-[100px] z-0"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Text content */}
         <div className="relative z-10">
@@ -116,7 +116,7 @@ const SectorsSection = () => {
                 className="bg-black/50 backdrop-blur-md rounded-xl p-6 sm:p-8 border border-white/10 hover:border-jockepay-green/50 transition-colors"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-jockepay-green/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-lg bg-jockepay-green/10 flex items-center justify-center text-jockepay-blue">
                     {sector.icon}
                   </div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white">{sector.title}</h3>
