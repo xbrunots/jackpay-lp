@@ -6,7 +6,7 @@ interface ContactFormData {
   segment: string;
 }
 
-const BREVO_API_KEY = import.meta.env.VITE_BREVO_SMTP_API_KEY;
+const BREVO_API_KEY = import.meta.env.BREVO_API_KEY;
 
 if (!BREVO_API_KEY) {
   console.error('A chave API do Brevo não está configurada. Verifique o arquivo .env.local');
@@ -37,13 +37,13 @@ export const sendContactForm = async (formData: ContactFormData) => {
         },
         to: [
           {
-            email: "joao@jockpay.com.br",
+            email: "joao@mazul.solutions",
             name: "João da JockPay"
           }
         ],
         cc: [
           {
-            email: "bruno@jockpay.com.br",
+            email: "xbrunots@gmail.com",
             name: "Bruno da JockPay"
           }
         ],
