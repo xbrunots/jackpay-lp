@@ -4,7 +4,7 @@ import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserve
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Badge } from './ui/Badge';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 
 // Animações reutilizáveis
 const fadeInUpVariant = {
@@ -20,6 +20,7 @@ const LoadingSpinner = () => (
 );
 
 interface Benefit {
+  id: string;
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -34,36 +35,42 @@ const BenefitsSection: React.FC = () => {
   
   const benefits = useMemo<Benefit[]>(() => [
     {
+      id: " orquestração-inteligente",
       icon: <Network className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Orquestração inteligente",
       description: "Distribua transações entre múltiplos provedores de forma estratégica e otimizada.",
       tooltip: "Sistema inteligente que distribui automaticamente as transações entre diferentes provedores"
     },
     {
+      id: "plugin-play",
       icon: <Shuffle className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Plugin Play",
       description: "Ative e desative provedores e adquirentes com rapidez e eficiência, a hora que quiser com poucos cliques.",
       tooltip: "Gerenciamento flexível de provedores de pagamento"
     },
     {
+      id: "analytics-em-tempo-real",
       icon: <BarChart3 className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Analytics em tempo real",
       description: "Visualize métricas de desempenho e taxas de aprovação para tomar decisões baseadas em dados.",
       tooltip: "Dashboard com análises em tempo real de todas as transações"
     },
     {
+      id: "dashboard-centralizado",
       icon: <LayoutDashboard className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Dashboard centralizado",
       description: "Gerencie todas as suas transações em uma única interface intuitiva e poderosa.",
       tooltip: "Interface unificada para gerenciamento de pagamentos"
     },
     {
+      id: "lógica-de-fallback",
       icon: <RefreshCw className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Lógica de fallback",
       description: "Recupere transações recusadas automaticamente através de rotas alternativas.",
       tooltip: "Sistema automático de recuperação de transações recusadas"
     },
     {
+      id: "segurança-avançada",
       icon: <Shield className="w-6 h-6 text-jockepay-neon group-hover:text-jockepay-blue transition-colors duration-300" />,
       title: "Segurança avançada",
       description: "Proteja seus dados e transações com os mais altos padrões de segurança do mercado.",
