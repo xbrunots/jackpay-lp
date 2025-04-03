@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, ShoppingBag, Code, Banknote, Truck, GraduationCap, Building } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 

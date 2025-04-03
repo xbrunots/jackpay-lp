@@ -3,7 +3,7 @@ import { ArrowRight, Network, Shuffle, BarChart3, LayoutDashboard, RefreshCw, Sh
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
 
 // Animações reutilizáveis

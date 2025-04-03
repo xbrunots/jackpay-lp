@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Badge from './Badge';
+import { Badge } from './badge';
 
 describe('Badge', () => {
   it('renders the badge with correct content', () => {

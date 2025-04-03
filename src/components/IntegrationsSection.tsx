@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { ExternalLink, CheckCircle, Clock, AlertCircle, Zap, Shield, ArrowRight, X } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Badge } from './ui/Badge';
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion';
 

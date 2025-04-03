@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, BarChart3, TrendingUp, Wallet, PieChart } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
-import { Badge } from './ui/Badge';
+import { Badge } from './ui/badge';
 import { Button } from './ui/Button';
 
 const SimulatorSection = () => {

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, CheckCircle2, Shield, Clock, Headphones } from 'lucide-react';
 import DashboardPreview from './ui/DashboardPreview';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
 
 const HeroSection: React.FC = () => {
