@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowRight, ShoppingBag, Code, Banknote, Truck, GraduationCap, Building } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
-import { Badge } from './ui/Badge';
-import { Button } from './ui/Button';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from './ui/button';
 import { motion } from 'framer-motion';
 
 // Define sector colors for distinct visual identity with improved contrast
@@ -15,51 +15,66 @@ const sectorColors = {
   marketplace: { bg: "#be123c", light: "#fb7185" }, // Brighter rose
 };
 
+interface Sector {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  color: { bg: string; light: string };
+  ariaLabel: string;
+}
+
 const SectorsSection = () => {
   const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
   
-  const sectors = [
+  const sectors: Sector[] = [
     {
-      icon: <ShoppingBag strokeWidth={1.5} className="text-white transition-colors duration-300" />,
-      title: "E-Commerce",
-      description: "Melhore as taxas de conversão e reduza custos transacionais com roteamento inteligente entre PSPs.",
+      id: "ecommerce",
+      icon: <ShoppingBag className="w-6 h-6" />,
+      title: "E-commerce",
+      description: "Aumente suas conversões com nossa solução de pagamentos otimizada para lojas virtuais.",
       color: sectorColors.ecommerce,
-      ariaLabel: "E-Commerce - Melhore as taxas de conversão"
+      ariaLabel: "E-commerce"
     },
     {
-      icon: <Code strokeWidth={1.5} className="text-white transition-colors duration-300" />,
+      id: "saas",
+      icon: <Code className="w-6 h-6" />,
       title: "SaaS",
-      description: "Otimize cobranças recorrentes e reduza taxas de churn oferecendo alternativas de pagamento.",
+      description: "Integre pagamentos recorrentes e gestão de assinaturas de forma simples e eficiente.",
       color: sectorColors.saas,
-      ariaLabel: "SaaS - Otimize cobranças recorrentes"
+      ariaLabel: "Software as a Service"
     },
     {
-      icon: <Banknote strokeWidth={1.5} className="text-white transition-colors duration-300" />,
+      id: "fintech",
+      icon: <Banknote className="w-6 h-6" />,
       title: "Fintech",
-      description: "Ganhe flexibilidade com múltiplas integrações e melhore o desempenho de pagamentos.",
+      description: "Ofereça uma experiência de pagamento segura e moderna para seus usuários.",
       color: sectorColors.fintech,
-      ariaLabel: "Fintech - Ganhe flexibilidade com múltiplas integrações"
+      ariaLabel: "Fintech"
     },
     {
-      icon: <Truck strokeWidth={1.5} className="text-white transition-colors duration-300" />,
+      id: "logistics",
+      icon: <Truck className="w-6 h-6" />,
       title: "Logística",
-      description: "Gerencie pagamentos de fretes e entregas com maior eficiência e menores custos.",
+      description: "Gerencie pagamentos e entregas em uma única plataforma integrada.",
       color: sectorColors.logistics,
-      ariaLabel: "Logística - Gerencie pagamentos de fretes e entregas"
+      ariaLabel: "Logística"
     },
     {
-      icon: <GraduationCap strokeWidth={1.5} className="text-white transition-colors duration-300" />,
+      id: "education",
+      icon: <GraduationCap className="w-6 h-6" />,
       title: "Educação",
-      description: "Simplifique o recebimento de mensalidades e reduza inadimplência com rotas alternativas.",
+      description: "Facilite o pagamento de mensalidades e cursos com nossa solução especializada.",
       color: sectorColors.education,
-      ariaLabel: "Educação - Simplifique o recebimento de mensalidades"
+      ariaLabel: "Educação"
     },
     {
-      icon: <Building strokeWidth={1.5} className="text-white transition-colors duration-300" />,
+      id: "marketplace",
+      icon: <Building className="w-6 h-6" />,
       title: "Marketplace",
-      description: "Gerencie pagamentos entre múltiplos vendedores com flexibilidade e controle total.",
+      description: "Gerencie pagamentos entre múltiplos vendedores e compradores com segurança.",
       color: sectorColors.marketplace,
-      ariaLabel: "Marketplace - Gerencie pagamentos entre múltiplos vendedores"
+      ariaLabel: "Marketplace"
     }
   ];
 
