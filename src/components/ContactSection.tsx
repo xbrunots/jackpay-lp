@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 import { Badge } from './ui/badge';
-import { Button } from './ui/Button';
-import { Input } from './ui/Input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/Select';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 interface FormData {
   name: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Select from './Select';
+import { Select } from './select';
 
 describe('Select', () => {
   const options = [

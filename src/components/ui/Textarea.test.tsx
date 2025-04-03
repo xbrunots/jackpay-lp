@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Textarea from './Textarea';
+import { Textarea } from './textarea';
 
 describe('Textarea', () => {
   it('renders the textarea with correct content', () => {

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, CheckCircle2, Shield, Clock, Headphones } from 'lucide-react';
-import DashboardPreview from './ui/DashboardPreview';
+import DashboardPreview from './ui/dashboard-preview';
 import { Badge } from '@/components/ui/badge';
 import { Button } from './ui/button';
 

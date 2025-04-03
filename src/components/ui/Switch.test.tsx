@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Switch from './Switch';
+import { Switch } from './switch';
 
 describe('Switch', () => {
   it('renders the switch with correct content', () => {

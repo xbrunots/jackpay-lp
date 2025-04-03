@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, BarChart3, TrendingUp, Wallet, PieChart } from 'lucide-react';
 import { useIntersectionObserverAnimated } from '../hooks/useIntersectionObserverAnimated';
 import { Badge } from './ui/badge';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 
 const SimulatorSection = () => {
   const { ref: sectionRef, isVisible: sectionIsVisible } = useIntersectionObserverAnimated({ threshold: 0.1 });
