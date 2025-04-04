@@ -27,7 +27,7 @@ describe('HeroSection', () => {
     const { getByText } = render(<HeroSection />);
 
     // Verifica se o título do dashboard está presente
-    expect(getByText(/Jockepay Dashboard/i)).toBeInTheDocument();
+    expect(getByText(/JockPay Dashboard/i)).toBeInTheDocument();
 
     // Verifica se o status "Ao vivo" está presente
     expect(getByText(/Ao vivo/i)).toBeInTheDocument();

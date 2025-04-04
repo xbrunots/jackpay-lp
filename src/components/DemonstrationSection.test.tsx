@@ -11,7 +11,7 @@ describe('DemonstrationSection', () => {
     expect(getByText(/Veja como funciona/i)).toBeInTheDocument();
 
     // Verifica se o subtítulo está presente
-    expect(getByText(/Assista ao vídeo e entenda como a Jockepay pode transformar seus pagamentos/i)).toBeInTheDocument();
+    expect(getByText(/Assista ao vídeo e entenda como a JockPay pode transformar seus pagamentos/i)).toBeInTheDocument();
 
     // Verifica se o vídeo está presente
     const video = getByRole('video');

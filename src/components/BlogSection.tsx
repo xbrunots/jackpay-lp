@@ -70,7 +70,7 @@ const BlogSection = () => {
               <div className={`h-48 bg-gradient-to-br ${post.gradient} p-8 relative overflow-hidden flex items-center justify-center`}>
                 {/* Animated preview */}
                 <div className="relative w-full h-full backdrop-blur-sm bg-white/5 dark:bg-white/5 rounded-xl border border-white/10 flex flex-col items-center justify-center p-6 text-center">
-                  <div className="text-jockepay-blue dark:text-jockepay-neon font-medium mb-2">Jockepay Blog</div>
+                  <div className="text-jockepay-blue dark:text-jockepay-neon font-medium mb-2">JockPay Blog</div>
                   <div className="text-sm text-foreground/70">{post.excerpt.substring(0, 30)}...</div>
                 </div>
               </div>

@@ -12,10 +12,10 @@ const DashboardPreview: React.FC<DashboardPreviewProps> = ({ className = '' }) =
       {/* Header */}
       <div className="p-6 border-b border-white/10">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-white">Jockepay Dashboard</h3>
+          <h3 className="text-xl font-semibold text-white">JockPay Dashboard</h3>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-jockepay-success rounded-full animate-pulse"></div>
-            <span className="text-sm text-jockepay-success">Ao vivo</span>
+            <span className="text-sm text-jockepay-success" style={{width: "85px"}}>Ao vivo</span>
           </div>
         </div>
       </div>

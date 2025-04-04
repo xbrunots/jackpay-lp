@@ -319,7 +319,7 @@ const IntegrationsSection: React.FC<IntegrationSectionProps> = ({ className = ''
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Text content */}
-        <div className="relative z-10">
+        <div className="relative z-10"  >
           <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-28 max-w-4xl mx-auto">
             <Badge color="green">Integrações</Badge>
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-4 sm:mt-6 mb-4 sm:mb-6">
@@ -332,7 +332,7 @@ const IntegrationsSection: React.FC<IntegrationSectionProps> = ({ className = ''
               </div>
               
         {/* Mandala */}
-        <div className="relative z-0">
+        <div className="relative z-0"  >
           <motion.div 
             className="relative h-[150px] sm:h-[200px] md:h-[300px] lg:h-[400px] xl:h-[500px] w-full flex items-center justify-center"
             style={{ y }}

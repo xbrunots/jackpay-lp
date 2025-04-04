@@ -42,16 +42,18 @@ const PerformanceMetrics: React.FC = () => {
           <span className="text-4xl font-bold text-jockepay-success">97.4%</span>
           <p className="text-sm text-white/70 mt-2">Taxa de Aprovação</p>
         </div>
-        
+
         <div className="bg-gradient-to-br from-jockepay-neon/20 to-jockepay-neon/5 backdrop-blur-md rounded-xl border border-jockepay-neon/30 p-6 text-center hover:border-jockepay-neon/50 transition-all">
           <span className="text-4xl font-bold text-jockepay-neon">8.5%</span>
           <p className="text-sm text-white/70 mt-2">Recuperação via Fallback</p>
         </div>
       </div>
-      
+
       {/* Gráfico de Performance */}
       <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/10 p-6">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6" style={{
+          display: "block"
+        }}>
           <div className="flex items-center gap-3">
             <BarChart2 size={20} className="text-jockepay-neon" />
             <h4 className="text-white text-lg font-medium">Performance por PSP</h4>
@@ -71,11 +73,11 @@ const PerformanceMetrics: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="aspect-video">
           <ChartContainer
             config={{
-              stripe: { 
+              stripe: {
                 theme: { light: "#10b981", dark: "#10b981" },
                 label: "Stripe"
               },
@@ -108,38 +110,38 @@ const PerformanceMetrics: React.FC = () => {
                     <stop offset="95%" stopColor="#00f2ea" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <XAxis 
+                <XAxis
                   dataKey="name"
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 12, fill: 'rgba(255,255,255,0.5)' }}
                 />
-                <YAxis 
+                <YAxis
                   domain={[80, 100]}
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 12, fill: 'rgba(255,255,255,0.5)' }}
                 />
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <ChartTooltip 
+                <ChartTooltip
                   content={<ChartTooltipContent labelFormatter={(label) => `${label} 2023`} />}
                 />
-                <Area 
-                  type="monotone" 
-                  dataKey="stripe" 
+                <Area
+                  type="monotone"
+                  dataKey="stripe"
                   stroke="#10b981"
                   fillOpacity={1}
                   fill="url(#stripeGradient)"
                 />
-                <Area 
-                  type="monotone" 
+                <Area
+                  type="monotone"
                   dataKey="pagseguro"
                   stroke="#3b82f6"
                   fillOpacity={1}
                   fill="url(#pagseguroGradient)"
                 />
-                <Area 
-                  type="monotone" 
+                <Area
+                  type="monotone"
                   dataKey="pagbank"
                   stroke="#00f2ea"
                   fillOpacity={1}
@@ -204,14 +206,14 @@ const PerformanceMetrics: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Comparação de Desempenho */}
       <div className="bg-black/40 backdrop-blur-md rounded-xl border border-white/10 p-6">
         <div className="flex items-center gap-3 mb-6">
           <TrendingUp size={20} className="text-jockepay-neon" />
           <h4 className="text-white text-lg font-medium">Comparação de Desempenho</h4>
         </div>
-        
+
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
@@ -222,7 +224,7 @@ const PerformanceMetrics: React.FC = () => {
               <div className="text-xl font-semibold text-white">{comparisonData.withoutJockepay}% aprovação</div>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 rounded-full bg-jockepay-neon/20 flex items-center justify-center">
               <CheckCircle size={20} className="text-jockepay-neon" />
@@ -232,7 +234,7 @@ const PerformanceMetrics: React.FC = () => {
               <div className="text-xl font-semibold text-white">{comparisonData.withJockepay}% aprovação</div>
             </div>
           </div>
-          
+
           {/* Resumo */}
           <div className="bg-jockepay-success/10 border border-jockepay-success/30 rounded-lg p-5 flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-jockepay-success/30 flex items-center justify-center">
